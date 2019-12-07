@@ -1,25 +1,34 @@
 package com.patreon;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import com.github.jasminb.jsonapi.*;
-import com.patreon.resources.Campaign;
-import com.patreon.resources.Pledge;
-import com.patreon.resources.RequestUtil;
-import com.patreon.resources.User;
-import com.patreon.resources.shared.BaseResource;
-import com.patreon.resources.shared.Field;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.github.jasminb.jsonapi.DeserializationFeature;
+import com.github.jasminb.jsonapi.JSONAPIDocument;
+import com.github.jasminb.jsonapi.Link;
+import com.github.jasminb.jsonapi.Links;
+import com.github.jasminb.jsonapi.ResourceConverter;
+import com.patreon.resources.Campaign;
+import com.patreon.resources.Pledge;
+import com.patreon.resources.RequestUtil;
+import com.patreon.resources.User;
+import com.patreon.resources.shared.BaseResource;
+import com.patreon.resources.shared.Field;
 
 public class PatreonAPI {
   /**
@@ -158,7 +167,7 @@ public class PatreonAPI {
     );
   }
 
-  public String getNextCursorFromDocument(JSONAPIDocument document) {
+  public String getNextCursorFromDocument(JSONAPIDocument<?> document) {
     Links links = document.getLinks();
     if (links == null) {
       return null;

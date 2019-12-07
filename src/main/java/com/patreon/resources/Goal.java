@@ -1,15 +1,13 @@
 package com.patreon.resources;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.jasminb.jsonapi.annotations.Type;
 import com.patreon.resources.shared.BaseResource;
 import com.patreon.resources.shared.Field;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Type("goal")
 public class Goal extends BaseResource {

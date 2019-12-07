@@ -1,17 +1,18 @@
 package com.patreon;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.Calendar;
+import java.util.Date;
+
 import org.apache.http.client.utils.URIBuilder;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.Calendar;
-import java.util.Date;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class PatreonOAuth {
 
@@ -76,7 +77,8 @@ public class PatreonOAuth {
     private int expires_in;
     private String scope;
     private String token_type;
-    private Date expiresAt;
+    @SuppressWarnings("unused")
+	private Date expiresAt;
 
     public TokensResponse(String access_token, String refresh_token, int expires_in, String scope, String token_type) {
       this.access_token = access_token;
