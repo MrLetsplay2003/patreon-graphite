@@ -15,13 +15,14 @@ public class Pledge extends BaseResource {
   
   public enum PledgeField implements Field {
     AmountCents("amount_cents", true),
+    Currency("currency", true),
     CreatedAt("created_at", true),
     DeclinedSince("declined_since", true),
     PatronPaysFees("patron_pays_fees", true),
     PledgeCapCents("pledge_cap_cents", true),
     TotalHistoricalAmountCents("total_historical_amount_cents", false),
     IsPaused("is_paused", false),
-    HasShippingAddress("has_shipping_address", false),
+    HasShippingAddress("has_shipping_address", false)
     ;
 
     private final String propertyName;
@@ -48,6 +49,7 @@ public class Pledge extends BaseResource {
   }
 
   private int amountCents;
+  private String currency;
   private String createdAt;
   private String declinedSince;
   private boolean patronPaysFees;
@@ -69,6 +71,7 @@ public class Pledge extends BaseResource {
 
   public Pledge(
                  @JsonProperty("amount_cents") int amount_cents,
+                 @JsonProperty("currency") String currency,
                  @JsonProperty("created_at") String created_at,
                  @JsonProperty("declined_since") String declined_since,
                  @JsonProperty("patron_pays_fees") boolean patron_pays_fees,
@@ -81,6 +84,7 @@ public class Pledge extends BaseResource {
                  @JsonProperty("reward") Reward reward
   ) {
     this.amountCents = amount_cents;
+    this.currency = currency;
     this.createdAt = created_at;
     this.declinedSince = declined_since;
     this.patronPaysFees = patron_pays_fees;
@@ -95,6 +99,10 @@ public class Pledge extends BaseResource {
 
   public int getAmountCents() {
     return amountCents;
+  }
+  
+  public String getCurrency() {
+	return currency;
   }
 
   public String getCreatedAt() {
